@@ -1,0 +1,8 @@
+1.Use duplicateMol.py to duplicate the molecule to a single gro file, say, ini.gro
+  Note that the orinigal gro file should contain only one molecule
+2.Use editconf to format the ini.gro 
+3.Use makeDest.py to create a dest.xyz file containing the desired position coordinates in each line
+4.Use make.tcl to obtain the final results.
+
+---
+An example of the workflow is given in the prep.sh
