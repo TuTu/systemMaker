@@ -4,7 +4,7 @@ import sys
 #inFile = open(inFilename, 'r')
 #outFile = open(outFilename, 'w')
 
-parser = argparse.ArgumentParser(description='Arrange molecules into a single gro file')
+parser = argparse.ArgumentParser(description='Duplicate and stack molecules into a single gro file')
 parser.add_argument('-i', '--inFile', nargs='+', type=argparse.FileType('r'), required=True,
     help='Gromacs gro files, containing molecules to be duplicated in sequence.')
 parser.add_argument('-o', '--outFile', nargs=1, type=argparse.FileType('w'), required=True,
@@ -37,9 +37,9 @@ outFile.write(str(totNumAtom) + '\n')
 resCount = 0
 for (inFileIndex, inFile) in enumerate(inFileList):
     molLines = []
-    for line in inFile:
-        molLines.append(line[5:])
-    molLines.pop() #remove the last line which contains cell dimensions
+    for (i, line) in enumerate(inFile):
+        if i < numAtom[inFileIndex] :
+            molLines.append(line[5:])
 
     for i in range(1,numDup[inFileIndex]+1):
         resCount += 1

@@ -1,4 +1,4 @@
-source ~/osmolyte_ffmixed/tools/make_unit/mol_man.tcl
+source ~/osmolyte_ffmixed/tools/systemMaker/mol_man.tcl
 
 set dest_filename "dest.xyz"
 set ini_gro "ini.gro"
