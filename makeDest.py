@@ -3,20 +3,20 @@ import math
 import itertools
 
 parser = argparse.ArgumentParser(description='Create 3D grid points')
-parser.add_argument('outFile', nargs=1, type=argparse.FileType('w'),
+parser.add_argument('outFile', type=argparse.FileType('w'),
     help='output file')
-parser.add_argument('numPoints', nargs=1, type=int,
+parser.add_argument('numPoints', type=int,
     help='number of points')
-parser.add_argument('-d', '--pointDistance', nargs=1, type=float, required=True,
+parser.add_argument('-d', '--pointDistance', type=float, required=True,
     help='distance between points')
-parser.add_argument('-t', '--type', nargs=1, required=True,
+parser.add_argument('-t', '--type', default='cubic',
     help='point-stack geometry: cubic, pillar')
 
 args = parser.parse_args()
-outFile = args.outFile[0]
-numPoints = args.numPoints[0]
-pointDistance = args.pointDistance[0]
-type = args.type[0]
+outFile = args.outFile
+numPoints = args.numPoints
+pointDistance = args.pointDistance
+type = args.type
 
 def permute(vec):
     perm = itertools.permutations(vec)
@@ -38,6 +38,7 @@ def getCubic(dim):
     return prod
 
 def getPillar(bottom, height):
+    pass
 
 
 if type == 'cubic':
@@ -50,6 +51,7 @@ if type == 'cubic':
     points = getCubic(cubicDimension) + getShell(cubicDimension + 1)[0:numPointsLeft]
 
 elif type == 'pillar':
+    pass
     
 
 #output
