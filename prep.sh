@@ -1,10 +1,12 @@
 #!/bin/bash
-# $1 = number of grid points, $2 = grid size in AA
+# $1 = input single molecule gro file
+# $2 = number of grid points
+# $3 = grid size in AA
 
-python3.2 makeMol.py -i ini.gro -o tmp.gro -n $1
+python3.2 makeMol.py -i $1 -o tmp.gro -n $2
 editconf_d -f tmp.gro -o ini.gro 
 
-python3.2 makeDest.py dest.xyz $1 -d $2
+python3.2 makeDest.py dest.xyz $2 -d $3
 
 vmd -dispdev text -e arrange.tcl 
 
