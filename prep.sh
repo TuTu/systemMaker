@@ -3,6 +3,11 @@
 # $2 = number of grid points
 # $3 = grid size in AA
 
+if [ $# -lt 3 ]; then
+  echo "Usage: $0 <single.gro> <num_grid_points> <grid distance in AA>"
+  exit 1;
+fi
+
 python3.2 makeMol.py -i $1 -o tmp.gro -n $2
 editconf_d -f tmp.gro -o ini.gro 
 
