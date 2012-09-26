@@ -1,4 +1,4 @@
-1.Use makeMol.py to make and duplicate the molecules into a single gro file, say, ini.gro
+1.Use makeMol.py to make and duplicate the molecule (in a gro file) into another gro file,
   Note that normally the orinigal gro files should contain only one molecule per file
 2.Use editconf to format the ini.gro 
 3.Use makeDest.py to create a dest.xyz file containing the desired position coordinates in each line
