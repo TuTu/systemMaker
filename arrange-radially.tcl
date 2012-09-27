@@ -42,7 +42,7 @@ proc cart2sphe {cart} {
     set y [lindex $cart 1]
     set z [lindex $cart 2]
     set r [expr {sqrt($x*$x + $y*$y + $z*$z)}]
-    return [list $r [expr {acos($z/$r)}] [expr {atan($y/$x)}]]
+    return [list $r [expr {acos($z/$r)}] [expr {atan2($y, $x)}]]
 }
 
 proc rot_sphere {sphe} {
@@ -50,13 +50,10 @@ proc rot_sphere {sphe} {
                   axis z [lindex $sphe 2] rad]
 }
 
-put A
 foreach sel $sel_list dest $dest_list {
     set rand_rot [trans axis z [expr rand()*360] deg]
     $sel move $rand_rot
-put B
     $sel move [rot_sphere [cart2sphe $dest]]
-put C
     $sel moveby $dest
 }
 
