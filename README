@@ -6,4 +6,4 @@
 
 An example of the workflow is given in the prep.sh
 
-prep-sphere.sh is another example script of how to arrange molecules spherically and radially outward.
+A similar procedure for arranging molecules on a sphere is provided in prep-sphere.sh
