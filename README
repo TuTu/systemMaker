@@ -1,8 +1,9 @@
 1.Use makeMol.py to make and duplicate the molecule (in a gro file) into another gro file,
   Note that normally the orinigal gro files should contain only one molecule per file
 2.Use editconf to format the ini.gro 
-3.Use makeDest.py to create a dest.xyz file containing the desired position coordinates in each line
-4.Use arrange.tcl to arrange those molecules in ini.gro into the corresponding positions in dest.xyz
+3.Use makePoints.py to create a position.xyz file containing the desired position coordinates in each line
+4.Use arrange.tcl to arrange those molecules in ini.gro onto the corresponding positions in position.xyz
 
----
 An example of the workflow is given in the prep.sh
+
+prep-sphere.sh is another example script of how to arrange molecules spherically and radially outward.

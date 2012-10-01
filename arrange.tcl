@@ -1,26 +1,24 @@
 source ~/osmolyte_ffmixed/tools/systemMaker/mol_man.tcl
 
-set dest_filename "dest.xyz"
-set ini_gro "ini.gro"
+if { $argc != 3 } {
+    puts "Usage: -args <molecules.gro> <positions.xyz>"
+    exit 1
+} else {
+    set ini_gro [lindex $argv 0]
+    set position_filename [lindex $argv 1]
+}
 
-puts "Please make sure the first line of $dest_filename\
+puts "Please make sure the first line of $position_filename\
 is the total number of the following lines, i.e. the total number of positions."
 
 
-set dest_file [open $dest_filename r]
-set dest_data [read $dest_file]
-close $dest_file
-set dest_data [split $dest_data \n]
+set position_file [open $position_filename r]
+set position_data [read $position_file]
+close $position_file
+set position_data [split $position_data \n]
 
-set num_mol [lindex $dest_data 0]
-set dest_list [lrange $dest_data 1 $num_mol]
-
-#set dist 4
-#set dest_list [list \
-          [list -$dist -$dist $dist] [list $dist $dist -$dist] \
-          [list $dist -$dist $dist] [list $dist -$dist -$dist] \
-          [list -$dist $dist $dist] [list -$dist $dist -$dist] \
-          [list $dist $dist $dist] [list -$dist -$dist -$dist]]
+set num_mol [lindex $position_data 0]
+set position_list [lrange $position_data 1 $num_mol]
 
 mol new $ini_gro
 
@@ -34,9 +32,9 @@ foreach sel $sel_list {
 
 puts "------------"
 
-foreach sel $sel_list dest $dest_list {
+foreach sel $sel_list position $position_list {
     mol_rand_rot $sel
-    mol_move $sel $dest
+    mol_move $sel $position
 }
 
 puts "------------"
