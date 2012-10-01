@@ -8,10 +8,15 @@ if [ $# -lt 3 ]; then
   exit 1;
 fi
 
-python3.2 makeMol.py -i $1 -o tmp.gro -n $2
-editconf_d -f tmp.gro -o ini.gro 
+#duplicate single molecules to multiple molecules in tmp.gro
+python3.2 makeMol.py -i $1 -o tmp.gro -n $2 &&
 
-python3.2 makeDest.py dest.xyz $2 -d $3
+#adjust the format (number sequence), make it a legal gro file
+editconf_d -f tmp.gro -o ini.gro &&
 
-vmd -dispdev text -e arrange.tcl 
+#generate desired grids
+python3.2 makePoints.py grid.xyz $2 -d $3 &&
+
+#arrange the molecules on the grids
+vmd -dispdev text -e arrange.tcl -args ini.gro grid.xyz 
 
