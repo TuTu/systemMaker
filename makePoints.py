@@ -3,14 +3,16 @@ import math
 import itertools
 
 parser = argparse.ArgumentParser(description='Create 3D grid points')
-parser.add_argument('outFile', type=argparse.FileType('w'),
-    help='output file')
 parser.add_argument('numPoints', type=int,
     help='number of points')
+parser.add_argument('-o', '--outFile', type=argparse.FileType('w'), required=True,
+    help='output file')
 parser.add_argument('-d', '--pointDistance', type=float, required=True,
-    help='distance between points')
+    help='distance between points in Angstrom')
+parser.add_argument('--offset', type=float, default=0.,
+    help='offset of all coordinates in Angstrom, dx dy dz')
 parser.add_argument('-t', '--type', default='cubic',
-    help='point-stack geometry: cubic, pillar')
+    help='point-stack geometry: cubic (default) or pillar')
 
 args = parser.parse_args()
 outFile = args.outFile
@@ -57,7 +59,7 @@ elif type == 'pillar':
 #output
 outFile.write(str(numPoints) + '\n')
 for point in points:
-    outFile.write("%f %f %f" % tuple([i * pointDistance for i in point]) + '\n')
+    outFile.write("%f %f %f" % tuple([p * pointDistance + args.offset for p in point]) + '\n')
 
 #stacking(pointStack, numPoints, outFile)
 outFile.close()

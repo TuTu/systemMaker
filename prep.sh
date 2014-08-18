@@ -15,7 +15,7 @@ python3.2 makeMol.py -i $1 -o tmp.gro -n $2 &&
 editconf_d -f tmp.gro -o ini.gro &&
 
 #generate desired grids
-python3.2 makePoints.py grid.xyz $2 -d $3 &&
+python3.2 makePoints.py $2 -o grid.xyz -d $3 &&
 
 #arrange the molecules on the grids
 vmd -dispdev text -e arrange.tcl -args ini.gro grid.xyz 
